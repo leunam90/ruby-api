@@ -1,24 +1,22 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Article, type: :model do
-  describe '#validations' do
+  describe "#validations" do
     let (:article) { build(:article) }
 
-    it "tests that factory is valid" do 
+    it "tests that factory is valid" do
       expect(article).to be_valid
-     end
-   
-     it 'has an invalidad title' do
-      article.title = ''
-       expect(article).not_to be_valid
-       expect(article.errors[:title]).to include("can't be blank")
-     end
+    end
 
-
+    it "has an invalidad title" do
+      article.title = ""
+      expect(article).not_to be_valid
+      expect(article.errors[:title]).to include("can't be blank")
+    end
   end
 
-  describe '.recent' do
-    it 'returns articles in the correct order' do
+  describe ".recent" do
+    it "returns articles in the correct order" do
       older_article = create(:article, created_at: 1.hour.ago)
       recent_article = create(:article)
 
@@ -31,7 +29,5 @@ RSpec.describe Article, type: :model do
         [older_article, recent_article]
       )
     end
-
   end
-
 end
